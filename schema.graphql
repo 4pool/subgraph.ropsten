@@ -1,0 +1,33 @@
+type Transaction @entity {
+  id: ID!
+  t_count: Int!
+  a: Int!
+  b: Int!
+  c: Int!
+  d: Int!
+  reward: Int!
+  pool: Int!
+}
+
+type Trade @entity {
+  id: ID!
+  t_count: Int!
+  buy: Int!
+  sell: Int!
+  trade: Int!
+  buy_liq: Int!
+  sell_liq: BigInt!
+}
+
+type Referral @entity {
+  id: ID!
+  addr: String!
+  fee: Int!
+  total_fee: Int!
+  ref_count: Int!
+}
+
+type Tcount @entity {
+  id: ID!
+  t_count: Int!
+}

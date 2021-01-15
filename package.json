@@ -1,0 +1,22 @@
+{
+  "name": "test321",
+  "version": "0.1.0",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+
+    "create-local": "graph create foo/test321 --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy foo/test321 --ipfs http://localhost:5001 --node http://127.0.0.1:8020"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.19.0",
+    "@graphprotocol/graph-ts": "^0.19.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "truffle": "^5.0.4",
+    "truffle-contract": "^4.0.5",
+    "truffle-hdwallet-provider": "^1.0.4"
+  }
+}
