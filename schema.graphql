@@ -1,4 +1,4 @@
-type Transaction @entity {
+type Pool @entity {
   id: ID!
   t_count: Int!
   a: Int!
@@ -30,4 +30,15 @@ type Referral @entity {
 type Tcount @entity {
   id: ID!
   t_count: Int!
+}
+
+type User @entity {
+  id: ID!
+  addr: String!
+  staked: Int!
+  pool_amount: Int!
+  t_count: Int!
+  t_count_max: Int!
+  join_pool: Int!
+  referred_by: String!
 }
