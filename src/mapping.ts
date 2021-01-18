@@ -1,12 +1,12 @@
-import { Transaction as OnTransaction, Referral as OnReferral, Trade as OnTrade} from '../generated/Token/Token'
-import { Transaction, Referral, Trade, Tcount } from '../generated/schema'
+import { OnPool, OnReferral, OnTrade, OnUser} from '../generated/Token/Token'
+import { Pool, Referral, Trade, Tcount, User} from '../generated/schema'
 
-export function handleTransaction(event: OnTransaction): void {
+export function handlePool(event: OnPool): void {
   let id = event.params.t_count.toString();
   let tcount = new Tcount(id);
   tcount.t_count = event.params.t_count.toI32();
   tcount.save();
-  let transaction = new Transaction(id); 
+  let transaction = new Pool(id); 
   transaction.t_count = event.params.t_count.toI32();
   transaction.a = event.params.a.toI32();
   transaction.b = event.params.b.toI32();
@@ -18,7 +18,7 @@ export function handleTransaction(event: OnTransaction): void {
 }
 
 export function handleReferral(event: OnReferral): void {
-  let id = event.params.addr.toString();
+  let id = event.params.addr.toHexString();
   let current = Referral.load(id);
   if(current) {
     current.fee = event.params.fee.toI32();
@@ -26,7 +26,7 @@ export function handleReferral(event: OnReferral): void {
     current.ref_count += 1;
   } else {
     let referral = new Referral(id);
-    referral.addr = event.params.addr.toString();
+    referral.addr = event.params.addr.toHexString();
     referral.fee = event.params.fee.toI32();
     referral.total_fee = 0;
     referral.ref_count = 0;
@@ -49,5 +49,18 @@ export function handleTrade(event: OnTrade): void {
   trade.save()
 }
 
+
+export function handleUser(event: OnUser): void {
+  let id = event.params.addr.toHexString();
+  let user = new User(id);
+  user.addr = event.params.addr.toHexString();
+  user.staked = event.params.staked.toI32();
+  user.pool_amount = event.params.pool_amount.toI32();
+  user.t_count = event.params.t_count.toI32();
+  user.t_count_max = event.params.t_count_max.toI32();
+  user.join_pool = event.params.join_pool;  
+  user.referred_by = event.params.referred_by.toHexString();  
+  user.save()
+}
 
  
