@@ -4,7 +4,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Token
-    network: mainnet
+    network: ropsten
     source:
       address: "0x8c2B45B6b6e931b71dC7Ca6B71263DE6B8CB2445"
       abi: Token
